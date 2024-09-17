@@ -10,8 +10,15 @@ import {
 } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { UserAddIcon } from "@heroicons/react/solid";
+import { useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate("/");
+  };
+
   const [clientName, setClientName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -382,6 +389,13 @@ const SignUp = () => {
           </form>
         )}
       </div>
+      <button
+        className="absolute top-3 left-4 bg-slate-500 hover:bg-slate-700 text-gray-200 hover:text-white cursor-pointer w-20 h-10 rounded-md text-sm font-medium flex items-center justify-center gap-2 duration-300"
+        onClick={handleNavigate}
+      >
+        <FaArrowLeft />
+        Home
+      </button>
     </div>
   );
 };

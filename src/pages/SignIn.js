@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 
 const SignIn = () => {
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate("/");
+  };
+
   // ============= Initial State Start here =============
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -41,6 +48,7 @@ const SignIn = () => {
       setPassword("");
     }
   };
+
   return (
     <div className="w-full h-screen flex items-center justify-center bg-gray-100">
       <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
@@ -126,6 +134,13 @@ const SignIn = () => {
           </form>
         )}
       </div>
+      <button
+        className="absolute top-3 left-4 bg-slate-500 hover:bg-slate-700 text-gray-200 hover:text-white cursor-pointer w-20 h-10 rounded-md text-sm font-medium flex items-center justify-center gap-2 duration-300"
+        onClick={handleNavigate}
+      >
+        <FaArrowLeft />
+        Home
+      </button>
     </div>
   );
 };

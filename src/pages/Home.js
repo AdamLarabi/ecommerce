@@ -1,6 +1,6 @@
 import React from "react";
 import img4 from "../assets/img4.jpg";
-import { FaLock, FaRocket, FaCog } from "react-icons/fa";
+import { FaLock, FaRocket, FaCog, FaBars } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const features = [
@@ -30,8 +30,21 @@ const features = [
 function Home() {
   const navigate = useNavigate();
 
-  const handlePriceInquiry = () => {
-    navigate("/priceInquiry");
+  const handleClick = (e) => {
+    const buttonText = document.getElementById("button-text");
+    const button = document.getElementById("order-button");
+    const icon = document.getElementById("menu-icon");
+
+    buttonText.style.display = "none";
+    icon.classList.remove("hidden");
+    icon.classList.add("animate-menu-icon");
+    button.style.background = "none";
+    button.classList.remove("rounded-lg", "shadow-lg");
+
+    // Delay navigation until the animation finishes
+    setTimeout(() => {
+      navigate("/priceInquiry");
+    }, 2000);
   };
 
   return (
@@ -122,8 +135,21 @@ function Home() {
           </div>
         </div>
       </section>
-      <section>
-        <button onClick={handlePriceInquiry}>demande de prix</button>
+      <section className="py-16 bg-gray-100 text-center">
+        <h2 className="text-3xl font-bold text-gray-800 mb-8">
+          Ready to Make an Order?
+        </h2>
+        <button
+          onClick={handleClick}
+          className="bg-blue-600 text-white py-3 px-6 rounded-lg shadow-lg hover:bg-blue-500 transition-transform transform relative"
+          id="order-button"
+        >
+          <span id="button-text">Make an Order</span>
+          <FaBars
+            className="hidden absolute text-5xl text-black top-1 right-1"
+            id="menu-icon"
+          />
+        </button>
       </section>
     </div>
   );
